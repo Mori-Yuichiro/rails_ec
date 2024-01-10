@@ -1,0 +1,12 @@
+<div class="item">
+  <figure class="item-img">
+    <%= image_tag(item.image, class: "image") if item.image.attached? %>
+  </figure>
+  <div class="item-data">
+    <%= link_to item_path(item.id) do %>
+      <h3><%= item.name %></h3>
+      <p><%= item.price %>円</p>
+    <% end %>
+    <button>カートに追加</button>
+  </div>
+</div>

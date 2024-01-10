@@ -1,0 +1,56 @@
+// スマホ版
+.show {
+    .show-figure {
+        margin-top: 60px;
+
+        .show-img {
+            width: 90%;
+            height: 100%;
+        }
+    }
+
+    .description {
+        margin-left: 10%;
+        text-align: left;
+    }
+
+    form {
+        width: 100%;
+    }
+}
+
+.related {
+    text-align: center;
+    width: 50%;
+    margin-left: 20px;
+
+    .item {
+        height: 400px;
+    }
+
+    .item-img {
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .related {
+        width: 280px;
+
+        .item {
+            height: 400px;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .show {
+        display: table;
+        margin: 0 auto;
+
+        .description {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+}

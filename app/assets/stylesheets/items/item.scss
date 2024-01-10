@@ -1,0 +1,45 @@
+.item {
+    height: 350px;
+    border: solid 3px #dcdcdc;
+    border-radius: 5%;
+    width: 90%;
+}
+
+.item-img {
+    background-color: #dcdcdc;
+    height: 45%;
+    border-radius: 5% 5% 0 0;
+
+    .image {
+        width: 100%;
+        height: 100%;
+        border-radius: 5% 5% 0 0;
+    }
+}
+
+.item-data {
+    text-align: center;
+
+    h3 {
+        font-size: 130%;
+    }
+
+    button {
+        padding: 3% 5%;
+        margin-top: 10%;
+        border-radius: 5%;
+        background-color: #fff;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .item {
+        width: 250px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .item {
+        width: 230px;
+    }
+}
