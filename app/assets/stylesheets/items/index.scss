@@ -1,0 +1,46 @@
+//スマホ版
+.shop-title {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    height: 297px;
+    margin-bottom: 70px;
+    text-align: center;
+
+    p {
+        color: #a9a9a9;
+    }
+}
+
+.items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
+    margin: 0 auto;
+    gap: 40px 30px;
+}
+
+@media screen and (min-width: 576px) {
+    .items {
+        width: 550px;
+    }
+}
+
+// タブレット版
+@media screen and (min-width: 768px) {
+    .items {
+        grid-template-columns: 1fr 1fr 1fr;
+        width: 768px;
+    }
+}
+
+// PC版
+@media screen and (min-width: 1200px) {
+    .items {
+        width: 1050px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
