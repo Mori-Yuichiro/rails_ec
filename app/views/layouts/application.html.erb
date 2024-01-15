@@ -10,7 +10,12 @@
   </head>
   <body>
     <div class="container">
-      <%= render "shared/navbar" %>
+      <% if @is_admin_page %>
+        <%= render "shared/admin_navbar" %>
+      <% else %>
+        <%= render "shared/item_navbar" %>
+      <% end %>
+      <%= render "shared/flash" %>
       <%= yield %>
       <%= render "shared/footer" %>
     </div>
