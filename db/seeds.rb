@@ -40,9 +40,9 @@
 
 # 管理者ユーザー登録
 3.times do |i|
-    User.create!(
-        name: "test#{i}",
-        password: "password#{i}", 
-        password_confirmation: "password#{i}",
-    )
+  User.create!(
+    name: "test#{i}",
+    password: "password#{i}",
+    password_confirmation: "password#{i}"
+  )
 end
