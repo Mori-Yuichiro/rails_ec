@@ -28,15 +28,15 @@
 #                                                   filename: 'test2.jpg')
 #   )
 
-  Item.create!(
-    name: "変なTシャツ3#{i}",
-    yomi: "へんなてぃーしゃつ3#{i}",
-    price: 2000,
-    description: "これはTシャツ1#{i}の詳細だ",
-    image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/test3.jpg')),
-                                                  filename: 'test3.jpg')
-  )
-end
+#   Item.create!(
+#     name: "変なTシャツ3#{i}",
+#     yomi: "へんなてぃーしゃつ3#{i}",
+#     price: 2000,
+#     description: "これはTシャツ1#{i}の詳細だ",
+#     image: ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/test3.jpg')),
+#                                                   filename: 'test3.jpg')
+#   )
+# end
 
 # 管理者ユーザー登録
 # 3.times do |i|
