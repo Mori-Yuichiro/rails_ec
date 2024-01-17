@@ -14,11 +14,6 @@
             <%= link_to "新規作成", new_admin_path, class: "nav-link active" %>
           </li>
         </ul>
-        <% if @current_user %>
-          <%= form_with url: logout_path, method: :delete, class: "d-flex" do |f| %>
-            <%= f.submit "ログアウト", class: "btn btn-outline-success" %>
-          <% end %>
-        <% end %>
       </div>
     </div>
   </nav>

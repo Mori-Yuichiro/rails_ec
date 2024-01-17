@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class AdminsController < ApplicationController
-  before_action :require_login, only: %i[index new create edit update destroy]
+  # before_action :require_login, only: %i[index new create edit update destroy]
+  before_action :basic_auth
   before_action :set_target_item, only: %i[edit update destroy]
 
   def index
@@ -53,5 +54,11 @@ class AdminsController < ApplicationController
 
   def set_target_item
     @item = Item.find_by(id: params[:id])
+  end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |admin, pw|
+      admin == ENV['BASIC_AUTH_USER'] && pw == ENV['BASIC_AUTH_PASSWORD']
+    end
   end
 end
