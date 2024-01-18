@@ -3,10 +3,19 @@
     <%= image_tag(item.image, class: "image") if item.image.attached? %>
   </figure>
   <div class="item-data">
-    <%= link_to item_path(item.id) do %>
+    <% if @is_admin_page %>
       <h3><%= item.name %></h3>
       <p><%= item.price %>円</p>
+      <%= form_with url: "/admin/items/#{item.id}/edit", method: :get do |f| %>
+        <%= f.button "編集", class: "btn btn-outline-success" %>
+      <% end %>
+      <%= link_to "削除", "/admin/items/#{item.id}", data: {turbo_method: :delete} %>
+    <% else %>
+      <%= link_to item_path(item.id) do %>
+        <h3><%= item.name %></h3>
+        <p><%= item.price %>円</p>
+      <% end %>
+      <button>カートに追加</button>
     <% end %>
-    <button>カートに追加</button>
   </div>
 </div>
