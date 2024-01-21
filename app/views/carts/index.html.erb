@@ -1,127 +1,127 @@
 <div class="cart">
-    <h1>Cart Page</h1>
-    <h4>Your Cart</h4>
-    <div>
-        <table class="cart-items">
-            <% @cart_item_arry.each.with_index do |item, i| %>
-                <tr class="cart-item">
-                    <td><%= item.name %></td>
-                    <td>¥<%= item.price %>✖️<%= @item_amount[i] %></td>
-                    <td><%= link_to "削除", cart_path(item.id), data: {turbo_method: :delete} %></td>
-                </tr>
-            <% end %>
-            <tr class="total-price">
-                <td>合計金額</td>
-                <td>¥<%= @total_price %></td>
-            </tr>
-        </table>
-        <form class="row g-3 promotion">
-            <div class="col-auto">
-                <input type="text" class="form-control" id="inputPassword2" placeholder="Promo Code">
-            </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">Redeem</button>
-            </div>
-        </form>
-    </div>
-    <div>
-        <h4>Billing Address</h4>
-        <form>
-            <div class="form-flex">
-                <div class="mb-3 form">
-                    <label for="disabledTextInput" class="form-label">First Name</label>
-                    <input type="text" id="disabledTextInput" class="form-control">
-                </div>
-                <div class="mb-3 form">
-                    <label for="disabledTextInput" class="form-label">Last Name</label>
-                    <input type="text" id="disabledTextInput" class="form-control">
-                </div>
-            </div>
-            <div class="mb-3 form">
-                <label for="disabledTextInput" class="form-label">User Name</label>
-                <input type="text" id="disabledTextInput" placeholder="Username" class="form-control">
-            </div>
-            <div class="mb-3 form">
-                <label for="disabledTextInput" class="form-label">Email(Optional)</label>
-                <input type="text" id="disabledTextInput" placeholder="you@example.com" class="form-control">
-            </div>
-            <div class="mb-3 form">
-                <label for="disabledTextInput" class="form-label">Address</label>
-                <input type="text" id="disabledTextInput" placeholder="Tokyo" class="form-control">
-            </div>
-            <div class="mb-3 form">
-                <label for="disabledTextInput" class="form-label">Address2(Optional)</label>
-                <input type="text" id="disabledTextInput" placeholder="アパート" class="form-control">
-            </div>
-            <div class="mb-3 form">
-                <label for="disabledSelect" class="form-label">Country</label>
-                <select id="disabledSelect" class="form-select">
-                    <option>Japan</option>
-                </select>
-            </div>
-            <div class="mb-3 form">
-                <label for="disabledSelect" class="form-label">Prefecture</label>
-                <select id="disabledSelect" class="form-select">
-                    <option>Tokyo</option>
-                </select>
-            </div>
-            <div class="mb-3 form">
-                <label for="disabledTextInput" class="form-label">Zip</label>
-                <input type="text" id="disabledTextInput" class="form-control">
-            </div>
-            <hr />
-            <div class="mb-3 form">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Shipping address is the same as my billing address
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Save this information for next time
-                    </label>
-                </div>
-                <hr />
-                <h4>Payment</h4>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                    <label class="form-check-label" for="flexRadioDefault1">
-                        Credit card
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        Debit card
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        PayPal
-                    </label>
-                </div>
-                <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Name on Card</label>
-                    <input type="text" id="disabledTextInput" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Credit card number</label>
-                    <input type="text" id="disabledTextInput" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Expiration</label>
-                    <input type="text" id="disabledTextInput" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">CVV</label>
-                    <input type="text" id="disabledTextInput" class="form-control">
-                </div>
-            </div>
-            <hr />
-            <button type="submit" class="btn btn-primary">Continue to checkout</button>
-        </form>
-    </div>
+  <h1>Cart Page</h1>
+  <h4>Your Cart</h4>
+  <div>
+    <table class="cart-items">
+      <% @cart_item_arry.each.with_index do |item, i| %>
+        <tr class="cart-item">
+          <td><%= item.name %></td>
+          <td>¥<%= item.price %>✖️<%= @item_amount[i] %></td>
+          <td><%= link_to "削除", cart_path(item.id), data: {turbo_method: :delete} %></td>
+        </tr>
+      <% end %>
+      <tr class="total-price">
+        <td>合計金額</td>
+        <td>¥<%= @total_price %></td>
+      </tr>
+    </table>
+    <form class="row g-3 promotion">
+      <div class="col-auto">
+        <input type="text" class="form-control" id="inputPassword2" placeholder="Promo Code">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Redeem</button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <h4>Billing Address</h4>
+    <form>
+      <div class="form-flex">
+        <div class="mb-3 form">
+          <label for="disabledTextInput" class="form-label">First Name</label>
+          <input type="text" id="disabledTextInput" class="form-control">
+        </div>
+        <div class="mb-3 form">
+          <label for="disabledTextInput" class="form-label">Last Name</label>
+          <input type="text" id="disabledTextInput" class="form-control">
+        </div>
+      </div>
+      <div class="mb-3 form">
+        <label for="disabledTextInput" class="form-label">User Name</label>
+        <input type="text" id="disabledTextInput" placeholder="Username" class="form-control">
+      </div>
+      <div class="mb-3 form">
+        <label for="disabledTextInput" class="form-label">Email(Optional)</label>
+        <input type="text" id="disabledTextInput" placeholder="you@example.com" class="form-control">
+      </div>
+      <div class="mb-3 form">
+        <label for="disabledTextInput" class="form-label">Address</label>
+        <input type="text" id="disabledTextInput" placeholder="Tokyo" class="form-control">
+      </div>
+      <div class="mb-3 form">
+        <label for="disabledTextInput" class="form-label">Address2(Optional)</label>
+        <input type="text" id="disabledTextInput" placeholder="アパート" class="form-control">
+      </div>
+      <div class="mb-3 form">
+        <label for="disabledSelect" class="form-label">Country</label>
+        <select id="disabledSelect" class="form-select">
+          <option>Japan</option>
+        </select>
+      </div>
+      <div class="mb-3 form">
+        <label for="disabledSelect" class="form-label">Prefecture</label>
+        <select id="disabledSelect" class="form-select">
+          <option>Tokyo</option>
+        </select>
+      </div>
+      <div class="mb-3 form">
+        <label for="disabledTextInput" class="form-label">Zip</label>
+        <input type="text" id="disabledTextInput" class="form-control">
+      </div>
+      <hr />
+      <div class="mb-3 form">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Shipping address is the same as my billing address
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+          <label class="form-check-label" for="flexCheckChecked">
+            Save this information for next time
+          </label>
+        </div>
+        <hr />
+        <h4>Payment</h4>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+          <label class="form-check-label" for="flexRadioDefault1">
+            Credit card
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Debit card
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            PayPal
+          </label>
+        </div>
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label">Name on Card</label>
+          <input type="text" id="disabledTextInput" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label">Credit card number</label>
+          <input type="text" id="disabledTextInput" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label">Expiration</label>
+          <input type="text" id="disabledTextInput" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="disabledTextInput" class="form-label">CVV</label>
+          <input type="text" id="disabledTextInput" class="form-control">
+        </div>
+      </div>
+      <hr />
+      <button type="submit" class="btn btn-primary">Continue to checkout</button>
+    </form>
+  </div>
 </div>
