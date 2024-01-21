@@ -15,7 +15,9 @@
         <h3><%= item.name %></h3>
         <p><%= item.price %>円</p>
       <% end %>
-      <button>カートに追加</button>
+      <%= form_with url: "/cart/#{item.id}", method: :post do |f| %>
+        <%= f.button "Add to cart", class: "btn btn-outline-success" %>
+      <% end %>
     <% end %>
   </div>
 </div>

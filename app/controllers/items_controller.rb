@@ -8,5 +8,6 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @related_item = Item.order(created_at: :desc).where.not(id: params[:id]).first
+    @cart_item = current_cart.cart_items
   end
 end
