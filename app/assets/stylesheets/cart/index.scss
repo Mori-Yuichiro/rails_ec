@@ -1,0 +1,42 @@
+.cart {
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    .cart-items {
+        width: 100%;
+
+        .total-price {
+            border-top: 1px solid;
+        }
+    }
+
+    .promotion {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .form {
+        text-align: left;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .form-flex {
+        display: inline-flex;
+        gap: 20px;
+    }
+}
+
+
+
+// 576px -> billing address 横
+//768px -> my_cart と　billing address 横並び

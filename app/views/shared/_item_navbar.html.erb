@@ -25,9 +25,7 @@
             </ul>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <button class="btn btn-outline-success" type="submit">Cart</button>
-        </form>
+        <%= link_to "Cart #{@amount}", cart_index_path, class: "btn btn-outline-success" %>
       </div>
     </div>
   </nav>
