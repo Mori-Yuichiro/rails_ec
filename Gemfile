@@ -52,6 +52,8 @@ gem 'cloudinary', require: true # Cloudinary
 gem 'dotenv-rails'
 gem 'letter_opener_web', '~> 1.0'
 
+gem 'rexml'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
