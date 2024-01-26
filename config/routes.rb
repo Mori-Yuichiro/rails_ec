@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  mount LetterOpenerWeb::Engine, at: '/letter_opener'
   root 'items#index'
 
   resources :items, only: %i[show]

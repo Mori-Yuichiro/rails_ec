@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 class AddToOrderDetail < ActiveRecord::Migration[7.0]
   def change
-    add_column :order_details, :item_name, :string, null: false
-    add_column :order_details, :price, :integer, null: false
+    change_table :order_details, bulk: true do |t|
+      t.string :item_name
+      t.integer :price
+    end
   end
 end

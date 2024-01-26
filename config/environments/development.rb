@@ -74,9 +74,9 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :letter_opener_web
-  #Gmailに送信したい場合の設定
+  # Gmailに送信したい場合の設定
   # config.action_mailer.delivery_method = :smtp
-  #送信方法として:smtpを指定した場合は、このconfigを使って送信詳細の設定を行います
+  # 送信方法として:smtpを指定した場合は、このconfigを使って送信詳細の設定を行います
   # config.action_mailer.smtp_settings = {
   #   #gmail利用時はaddress,domain,portは下記で固定
   #   address:"smtp.gmail.com",

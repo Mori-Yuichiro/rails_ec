@@ -1,17 +1,21 @@
+# frozen_string_literal: true
+
 class AddColumnsOrders < ActiveRecord::Migration[7.0]
   def change
-    add_column :orders, :first_name, :string, null: false
-    add_column :orders, :last_name, :string, null: false
-    add_column :orders, :user_name, :string, null: false
-    add_column :orders, :email, :string
-    add_column :orders, :address, :string, null: false
-    add_column :orders, :address2, :string
-    add_column :orders, :country, :string, null: false
-    add_column :orders, :prefecture, :string, null: false
-    add_column :orders, :zip, :string, null: false
-    add_column :orders, :name_on_card, :string, null: false
-    add_column :orders, :card_number, :string, null: false
-    add_column :orders, :expiration, :string, null: false
-    add_column :orders, :cvv, :string, null: false
+    change_table :orders, bulk: true do |t|
+      t.string :first_name
+      t.string :last_name
+      t.string :user_name
+      t.string :email
+      t.string :address
+      t.string :address2
+      t.string :country
+      t.string :prefecture
+      t.string :zip
+      t.string :name_on_card
+      t.string :card_number
+      t.string :expiration
+      t.string :cvv
+    end
   end
 end
