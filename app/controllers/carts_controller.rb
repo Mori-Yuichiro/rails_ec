@@ -2,6 +2,7 @@
 
 class CartsController < ApplicationController
   def index
+    @order = Order.new
     @cart_item_arry = []
     @item_amount = []
     @total_price = 0
@@ -13,6 +14,10 @@ class CartsController < ApplicationController
       @item_amount << cart_item_amount[key]
       @total_price += item.price * cart_item_amount[key]
     end
+
+    session[:total_price] = @total_price
+    session[:cart_items] = @cart_item_arry
+    session[:item_amount] = @item_amount
   end
 
   def create

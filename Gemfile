@@ -50,6 +50,7 @@ gem 'bootsnap', require: false
 gem 'activestorage-cloudinary-service' # Cloudinary と Active Storage の連携をする
 gem 'cloudinary', require: true # Cloudinary
 gem 'dotenv-rails'
+gem 'letter_opener_web', '~> 1.0'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_19_075401) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_24_063319) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,35 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_075401) do
     t.string "yomi"
   end
 
+  create_table "order_details", force: :cascade do |t|
+    t.integer "amount", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "item_name", null: false
+    t.integer "price", null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "total_price", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "user_name", null: false
+    t.string "email", null: false
+    t.string "address", null: false
+    t.string "address2"
+    t.string "country", null: false
+    t.string "prefecture", null: false
+    t.string "zip", null: false
+    t.string "name_on_card", null: false
+    t.string "card_number", null: false
+    t.string "expiration", null: false
+    t.string "cvv", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -78,4 +107,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_075401) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "items"
+  add_foreign_key "order_details", "orders"
 end
