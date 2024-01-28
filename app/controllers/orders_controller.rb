@@ -9,22 +9,11 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
-    @order_details = @order.order_details.all
+    @order_details = @order.order_details
   end
 
   def create
-    order = Order.new(billing_param)
-    order.total_price = session[:total_price]
-    cart_items = session[:cart_items]
-    if order.save
-      create_order_detail(order, cart_items)
-      OrderMailer.with(order:).order_email.deliver_now
-      flash[:notice] = '購入ありがとうございます'
-      redirect_to root_path
-    else
-      flash[:danger] = '購入処理に失敗しました'
-      redirect_back(fallback_location: root_path)
-    end
+    create_order
   end
 
   private
@@ -56,6 +45,24 @@ class OrdersController < ApplicationController
       )
       current_cart.cart_items.where(item_id: item['id']).delete_all
     end
+  end
+
+  def create_order
+    return if session[:cart_items].empty?
+
+    ActiveRecord::Base.transaction do
+      order = Order.new(billing_param)
+      order.total_price = session[:total_price]
+      order.save!
+      cart_items = session[:cart_items]
+      create_order_detail(order, cart_items)
+      OrderMailer.with(order:).order_email.deliver_now
+      flash[:notice] = '購入ありがとうございます'
+      redirect_to root_path
+    end
+  rescue ActiveRecord::RecordInvalid
+    flash[:danger] = '購入処理に失敗しました'
+    redirect_back(fallback_location: root_path)
   end
 
   def basic_auth
