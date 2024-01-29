@@ -37,8 +37,8 @@ class OrdersController < ApplicationController
   end
 
   def create_order_detail(order, cart_items)
-    cart_items.each.with_index do |item, i|
-      p item[:amount]
+    cart_items.each.with_index do |item, _i|
+      Rails.logger.debug item[:amount]
       order.order_items.create!(
         item_name: item[:name],
         price: item[:price],
@@ -68,8 +68,8 @@ class OrdersController < ApplicationController
 
   def group_by_items
     current_cart.cart_items.group_by(&:item).map do |k, v|
-      amount = v.reduce(0) { |sum, item| sum += item.amount }
-      { name: k.name, price: k.price, amount: amount }
+      amount = v.reduce(0) { |sum, item| sum + item.amount }
+      { name: k.name, price: k.price, amount: }
     end
   end
 
