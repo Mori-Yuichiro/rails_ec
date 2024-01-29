@@ -5,7 +5,7 @@ class OrderMailer < ApplicationMailer
 
   def order_email
     @order = params[:order]
-    @order_details = @order.order_details.all
+    @order_items = @order.order_items.all
     mail(to: @order.email, subject: 'ご注文ありがとうございました')
   end
 end

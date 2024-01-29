@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrderDetail < ApplicationRecord
+class OrderItem < ApplicationRecord
   belongs_to :order
 
   with_options presence: true do

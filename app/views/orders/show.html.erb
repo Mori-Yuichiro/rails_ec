@@ -1,7 +1,7 @@
 <div class="detail-show">
   <h2>購入明細詳細</h2>
   <table>
-    <% @order_details.each do |detail| %>
+    <% @order_items.each do |detail| %>
       <tr>
         <td><%= detail.item_name %></td>
         <td>¥<%= detail.price %>✖️<%= detail.amount %></td>
