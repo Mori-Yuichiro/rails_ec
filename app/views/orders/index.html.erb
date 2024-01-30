@@ -1,0 +1,14 @@
+<div class="detail-index">
+  <h2>購入明細</h2>
+  <table>
+    <tr>
+      <th>作成日時</th>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.to_s(:datetime_jp) %></td>
+        <td><%= link_to "詳細", order_path(order.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,42 +1,59 @@
+h1 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 .cart {
     margin: 0 auto;
     text-align: center;
     align-items: center;
 
-    h1 {
-        margin-bottom: 30px;
-    }
+    .cart-contents {
+        width: 60%;
 
-    .cart-items {
-        width: 100%;
+        .cart-items {
+            width: 100%;
 
-        .total-price {
-            border-top: 1px solid;
+            .total-price {
+                border-top: 1px solid;
+            }
         }
-    }
 
-    .promotion {
-        width: 100%;
-        margin: 0 auto;
+        .promotion {
+            display: inline-flex;
+            gap: 0 10%;
+            margin-top: 10px;
+        }
     }
 
     .form {
         text-align: left;
     }
 
-    button {
+    .button {
         width: 100%;
     }
 }
 
 @media screen and (min-width: 576px) {
+    .cart-contents {
+        margin: 0 auto;
+    }
+
     .form-flex {
         display: inline-flex;
         gap: 20px;
     }
 }
 
-
+@media screen and (min-width: 768px) {
+    .cart {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 0 20px;
+        align-items: flex-start;
+    }
+}
 
 // 576px -> billing address 横
 //768px -> my_cart と　billing address 横並び

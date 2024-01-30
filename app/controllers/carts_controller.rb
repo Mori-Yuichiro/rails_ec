@@ -2,6 +2,7 @@
 
 class CartsController < ApplicationController
   def index
+    @order = Order.new
     @cart_item_arry = []
     @item_amount = []
     @total_price = 0

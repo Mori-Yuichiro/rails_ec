@@ -1,13 +1,15 @@
+<h1>Cart Page</h1>
 <div class="cart">
-  <h1>Cart Page</h1>
-  <h4>Your Cart</h4>
-  <div>
+  <div class="cart-contents">
+    <h4>Your Cart</h4>
     <table class="cart-items">
       <% @cart_item_arry.each.with_index do |item, i| %>
         <tr class="cart-item">
           <td><%= item.name %></td>
-          <td>¥<%= item.price %>✖️<%= @item_amount[i] %></td>
-          <td><%= link_to "削除", cart_path(item.id), data: {turbo_method: :delete} %></td>
+          <td>
+            ¥<%= item.price %>✖️<%= @item_amount[i] %>
+            <%= link_to "削除", cart_path(item.id), data: {turbo_method: :delete} %>
+          </td>
         </tr>
       <% end %>
       <tr class="total-price">
@@ -15,7 +17,7 @@
         <td>¥<%= @total_price %></td>
       </tr>
     </table>
-    <form class="row g-3 promotion">
+    <form class="promotion">
       <div class="col-auto">
         <input type="text" class="form-control" id="inputPassword2" placeholder="Promo Code">
       </div>
@@ -24,104 +26,69 @@
       </div>
     </form>
   </div>
-  <div>
+  <div class="billing">
     <h4>Billing Address</h4>
-    <form>
+    <%= form_with model: @order, url: orders_path do |f| %>
       <div class="form-flex">
         <div class="mb-3 form">
-          <label for="disabledTextInput" class="form-label">First Name</label>
-          <input type="text" id="disabledTextInput" class="form-control">
+          <%= f.label :first_name, "First Name", class: "form-label" %>
+          <%= f.text_field :first_name, class: "form-control" %>
         </div>
         <div class="mb-3 form">
-          <label for="disabledTextInput" class="form-label">Last Name</label>
-          <input type="text" id="disabledTextInput" class="form-control">
+          <%= f.label :last_name, "Last Name", class: "form-label" %>
+          <%= f.text_field :last_name, class: "form-control" %>
         </div>
       </div>
       <div class="mb-3 form">
-        <label for="disabledTextInput" class="form-label">User Name</label>
-        <input type="text" id="disabledTextInput" placeholder="Username" class="form-control">
+        <%= f.label :user_name, "User Name", class: "form-label" %>
+        <%= f.text_field :user_name, class: "form-control", placeholder: "Username" %>
       </div>
       <div class="mb-3 form">
-        <label for="disabledTextInput" class="form-label">Email(Optional)</label>
-        <input type="text" id="disabledTextInput" placeholder="you@example.com" class="form-control">
+        <%= f.label :email, "Email", class: "form-label" %>
+        <%= f.text_field :email, class: "form-control", placeholder: "you@example.com" %>
       </div>
       <div class="mb-3 form">
-        <label for="disabledTextInput" class="form-label">Address</label>
-        <input type="text" id="disabledTextInput" placeholder="Tokyo" class="form-control">
+        <%= f.label :address, "Address", class: "form-label" %>
+        <%= f.text_field :address, class: "form-control", placeholder: "Tokyo" %>
       </div>
       <div class="mb-3 form">
-        <label for="disabledTextInput" class="form-label">Address2(Optional)</label>
-        <input type="text" id="disabledTextInput" placeholder="アパート" class="form-control">
+        <%= f.label :address2, "Address2(Optional)", class: "form-label" %>
+        <%= f.text_field :address2, class: "form-control", placeholder: "アパート" %>
       </div>
       <div class="mb-3 form">
-        <label for="disabledSelect" class="form-label">Country</label>
-        <select id="disabledSelect" class="form-select">
-          <option>Japan</option>
-        </select>
+        <%= f.label :country, "Country", class: "form-label" %>
+        <%= f.select :country, [["Japan", "Japan"]], {}, class: "form-select" %>
       </div>
       <div class="mb-3 form">
-        <label for="disabledSelect" class="form-label">Prefecture</label>
-        <select id="disabledSelect" class="form-select">
-          <option>Tokyo</option>
-        </select>
+        <%= f.label :prefecture, "Prefecture", class: "form-label" %>
+        <%= f.select :prefecture, [["Tokyo", "Tokyo"]], {}, class: "form-select" %>
       </div>
       <div class="mb-3 form">
-        <label for="disabledTextInput" class="form-label">Zip</label>
-        <input type="text" id="disabledTextInput" class="form-control">
+        <%= f.label :zip, "Zip", class: "form-label" %>
+        <%= f.text_field :zip, class: "form-control", placeholder: "000-0000" %>
       </div>
       <hr />
       <div class="mb-3 form">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            Shipping address is the same as my billing address
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-          <label class="form-check-label" for="flexCheckChecked">
-            Save this information for next time
-          </label>
-        </div>
-        <hr />
-        <h4>Payment</h4>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-          <label class="form-check-label" for="flexRadioDefault1">
-            Credit card
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-          <label class="form-check-label" for="flexRadioDefault2">
-            Debit card
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-          <label class="form-check-label" for="flexRadioDefault2">
-            PayPal
-          </label>
+        <h4>Payment(Credit Card Only)</h4>
+        <div class="mb-3">
+          <%= f.label :name_on_card, "Name On Card", class: "form-label" %>
+          <%= f.text_field :name_on_card, class: "form-control" %>
         </div>
         <div class="mb-3">
-          <label for="disabledTextInput" class="form-label">Name on Card</label>
-          <input type="text" id="disabledTextInput" class="form-control">
+          <%= f.label :card_number, "Credit card number", class: "form-label" %>
+          <%= f.text_field :card_number, class: "form-control", placeholder: "0000111122223333" %>
         </div>
         <div class="mb-3">
-          <label for="disabledTextInput" class="form-label">Credit card number</label>
-          <input type="text" id="disabledTextInput" class="form-control">
+          <%= f.label :expiration, "Expiration", class: "form-label" %>
+          <%= f.text_field :expiration, class: "form-control", placeholder: "YYYY-mm-dd" %>
         </div>
         <div class="mb-3">
-          <label for="disabledTextInput" class="form-label">Expiration</label>
-          <input type="text" id="disabledTextInput" class="form-control">
-        </div>
-        <div class="mb-3">
-          <label for="disabledTextInput" class="form-label">CVV</label>
-          <input type="text" id="disabledTextInput" class="form-control">
+          <%= f.label :cvv, "CVV", class: "form-label" %>
+          <%= f.text_field :cvv, class: "form-control", placeholder: "000" %>
         </div>
       </div>
       <hr />
-      <button type="submit" class="btn btn-primary">Continue to checkout</button>
-    </form>
+      <%= f.submit "購入する", class: "btn btn-primary button" %>
+    <% end %>
   </div>
 </div>

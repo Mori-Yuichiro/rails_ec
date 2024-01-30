@@ -1,0 +1,67 @@
+<div class="detail-show">
+  <h2>購入明細詳細</h2>
+  <table>
+    <% @order_items.each do |detail| %>
+      <tr>
+        <td><%= detail.item_name %></td>
+        <td>¥<%= detail.price %>✖️<%= detail.amount %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>合計金額</td>
+      <td>¥<%= @order.total_price %></td>
+    </tr>
+    <tr>
+      <th>First Name</th>
+      <td><%= @order.first_name %></td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td><%= @order.last_name %></td>
+    </tr>
+    <tr>
+      <th>User Name</th>
+      <td><%= @order.user_name %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @order.email %></td>
+    </tr>
+    <tr>
+      <th>Address</th>
+      <td><%= @order.address %></td>
+    </tr>
+    <tr>
+      <th>Address2</th>
+      <td><%= @order.address2 %></td>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <td><%= @order.country %></td>
+    </tr>
+    <tr>
+      <th>Prefecture</th>
+      <td><%= @order.prefecture %></td>
+    </tr>
+    <tr>
+      <th>Zip</th>
+      <td><%= @order.zip %></td>
+    </tr>
+    <tr>
+      <th>Name On Card</th>
+      <td><%= @order.name_on_card %></td>
+    </tr>
+    <tr>
+      <th>Card Number</th>
+      <td><%= @order.card_number %></td>
+    </tr>
+    <tr>
+      <th>Expiration</th>
+      <td><%= @order.expiration %></td>
+    </tr>
+    <tr>
+      <th>CVV</th>
+      <td><%= @order.cvv %></td>
+    </tr>
+  </table>
+</div>

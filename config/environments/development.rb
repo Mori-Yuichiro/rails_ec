@@ -39,7 +39,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -70,4 +70,23 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   config.web_console.permissions = '0.0.0.0/0'
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :letter_opener_web
+  # Gmailに送信したい場合の設定
+  # config.action_mailer.delivery_method = :smtp
+  # 送信方法として:smtpを指定した場合は、このconfigを使って送信詳細の設定を行います
+  # config.action_mailer.smtp_settings = {
+  #   #gmail利用時はaddress,domain,portは下記で固定
+  #   address:"smtp.gmail.com",
+  #   domain: 'gmail.com',
+  #   port:587,
+  #   #gmailのユーザアカウント（xxxx@gmail.com)
+  #   user_name: ENV['GMAIL_USER'],
+  #   #gmail２段階認証回避のためにアプリケーションでの利用パスワードを取得
+  #   password: ENV['GMAIL_PASSWORD'],
+  #   #パスワードをBase64でエンコード
+  #   authentication: :login
+  # }
 end
