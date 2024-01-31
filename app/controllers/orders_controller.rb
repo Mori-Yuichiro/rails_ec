@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    params[:promotion_code] ? redeem_promotion_code : create_order
+    create_order
   end
 
   private
@@ -84,17 +84,6 @@ class OrdersController < ApplicationController
     session[:discount] ? total_price - session[:discount] : total_price
   end
 
-  def redeem_promotion_code
-    promotion_code = PromotionCode.find_by(promotion_param)
-    if promotion_code && !promotion_code.used
-      discount = promotion_code.discount_amount
-      session[:discount] = discount
-      session[:promotion_code_id] = promotion_code.id
-      flash[:notice] = 'プロモーションコードを適用しました'
-    end
-    redirect_back(fallback_location: root_path)
-  end
-
   def update_promotion_code
     promotion_code = PromotionCode.find_by(id: session[:promotion_code_id])
     promotion_code.update!(used: true)
@@ -103,10 +92,6 @@ class OrdersController < ApplicationController
   def clear_promotion_session
     session.delete(:discount) if session[:discount]
     session.delete(:promotion_code_id) if session[:promotion_code_id]
-  end
-
-  def promotion_param
-    params.require(:promotion_code).permit(:code)
   end
 
   def basic_auth

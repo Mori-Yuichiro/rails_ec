@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :cart, only: %i[index destroy], controller: :carts
   post '/cart/:item_id', to: 'carts#create'
   resources :orders, only: %i[index show create]
-  resources :promotion_codes, only: %i[index]
+  resources :promotion_codes, only: %i[index create]
 end

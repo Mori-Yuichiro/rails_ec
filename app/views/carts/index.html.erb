@@ -28,7 +28,7 @@
         </tr>
       <% end %>
     </table>
-    <%= form_with model: @promotion_code, url: orders_path, class: "promotion" do |f| %>
+    <%= form_with model: @promotion_code, url: "/promotion_codes", class: "promotion" do |f| %>
       <div class="col-auto">
         <%= f.text_field :code, class: "form-control", placeholder: "Promo Code" %>
       </div>
