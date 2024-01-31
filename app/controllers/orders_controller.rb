@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    create_order
+    params[:promotion_code] ? redeem_promotion_code : create_order
   end
 
   private
@@ -55,9 +55,12 @@ class OrdersController < ApplicationController
     ActiveRecord::Base.transaction do
       order = Order.new(billing_param)
       order.total_price = calc_total_price(cart_items)
+      order.discount = session[:discount] if session[:discount]
       order.save!
       create_order_detail(order, cart_items)
       OrderMailer.with(order:).order_email.deliver_now
+      update_promotion_code if session[:promotion_code_id]
+      clear_promotion_session
       flash[:notice] = '購入ありがとうございます'
       redirect_to root_path
     end
@@ -78,7 +81,32 @@ class OrdersController < ApplicationController
     cart_items.each do |item|
       total_price += item[:price] * item[:amount]
     end
-    total_price
+    session[:discount] ? total_price - session[:discount] : total_price
+  end
+
+  def redeem_promotion_code
+    promotion_code = PromotionCode.find_by(promotion_param)
+    if promotion_code && !promotion_code.used
+      discount = promotion_code.discount_amount
+      session[:discount] = discount
+      session[:promotion_code_id] = promotion_code.id
+      flash[:notice] = 'プロモーションコードを適用しました'
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def update_promotion_code
+    promotion_code = PromotionCode.find_by(id: session[:promotion_code_id])
+    promotion_code.update!(used: true)
+  end
+
+  def clear_promotion_session
+    session.delete(:discount) if session[:discount]
+    session.delete(:promotion_code_id) if session[:promotion_code_id]
+  end
+
+  def promotion_param
+    params.require(:promotion_code).permit(:code)
   end
 
   def basic_auth
