@@ -12,19 +12,30 @@
           </td>
         </tr>
       <% end %>
-      <tr class="total-price">
-        <td>合計金額</td>
-        <td>¥<%= @total_price %></td>
-      </tr>
+      <% if session[:discount] %>
+        <tr>
+          <td>プロモーションコード</td>
+          <td>¥<%= session[:discount] %></td>
+        </tr>
+        <tr class="total-price">
+          <td>合計金額</td>
+          <td>¥<%= @total_price - session[:discount] %></td>
+        </tr>
+      <% else %>
+        <tr class="total-price">
+          <td>合計金額</td>
+          <td>¥<%= @total_price %></td>
+        </tr>
+      <% end %>
     </table>
-    <form class="promotion">
+    <%= form_with model: @promotion_code, url: "/promotion_codes", class: "promotion" do |f| %>
       <div class="col-auto">
-        <input type="text" class="form-control" id="inputPassword2" placeholder="Promo Code">
+        <%= f.text_field :code, class: "form-control", placeholder: "Promo Code" %>
       </div>
       <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">Redeem</button>
+        <%= f.submit "Redeem", class: "btn btn-primary mb-3" %>
       </div>
-    </form>
+    <% end %>
   </div>
   <div class="billing">
     <h4>Billing Address</h4>

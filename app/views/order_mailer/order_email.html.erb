@@ -14,6 +14,12 @@
             <td>¥<%= detail.price %>✖️<%= detail.amount %></td>
           </tr>
         <% end %>
+        <% if @order.discount %>
+          <tr>
+            <td>プロモーションコード</td>
+            <td>¥<%= @order.discount %></td>
+          </tr>
+        <% end %>
         <tr>
           <td>合計金額</td>
           <td>¥<%= @order.total_price %></td>

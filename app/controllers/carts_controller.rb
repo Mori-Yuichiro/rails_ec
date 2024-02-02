@@ -5,6 +5,7 @@ class CartsController < ApplicationController
     @order = Order.new
     @cart_item_arry = []
     @item_amount = []
+    @promotion_code = PromotionCode.new
     @total_price = 0
     cart_item_amount = current_cart.cart_items.group(:item_id).sum(:amount)
     keys = cart_item_amount.keys
